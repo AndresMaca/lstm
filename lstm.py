@@ -16,7 +16,7 @@ def read_words(filename):
         return f.read().decode("utf-8").replace("\n","<eos>").split()
 def build_vocab(filename):
     data = read_words(filename)
-    counter = collections.Counter(data)
+    counter = collections.Counter(data)#numero de palabras
     print("first counter items: "+counter.items()[0])
     count_pairs = sorted(counter.items(), key=lambda x: (-x[1], x[0]))
     """
@@ -32,7 +32,7 @@ def build_vocab(filename):
     all. This is where the * operator comes in. This operator unpacks the list in a way that each element of your list becomes an argument to the function.
     """
     word_to_id = dict(zip(words, range(len(words))))
-    return word_to_id
+    return word_to_id #word_to_id: ordena de mayor a menor segun el numero de apariciones, asigna un numero segun la posicion, ie: (a,0),(x,1),(car,2) so, a is the word with most appearances, x is the second one, so on..
 
 def file_to_word_ids(filename, word_to_id):
     data = read_words(filename)
@@ -40,11 +40,11 @@ def file_to_word_ids(filename, word_to_id):
 
 def load_data():
     train_path = os.path.join(data_path, "ptb.train.txt")
-    valid_path = os.path.join(datapath, "ptb.valid.txt")
-    test_path = os.path.join(datapath, "ptb.test.txt")
+    valid_path = os.path.join(data_path, "ptb.valid.txt")
+    test_path = os.path.join(data_path, "ptb.test.txt")
 
-    word_to_id = build_vocab(train_path)
-    train_data = file_to_word_ids(train_path, word_to_id)
+    word_to_id = build_vocab(train_path) #word_to_id: ordena de mayor a menor segun el numero de apariciones, asigna un numero segun la posicion, ie: (a,0),(x,1),(car,2) so, a is the word with most appearances, x is the second one, so on..
+    train_data = file_to_word_ids(train_path, word_to_id) # interchange the word for the id.
     valid_data = file_to_word_ids(valid_path, word_to_id)
     test_data = file_to_word_ids(test_path, word_to_id)
     vocabulary = len(word_to_id)
