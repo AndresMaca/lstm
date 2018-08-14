@@ -29,3 +29,4 @@ def build_vocab(filename):
     """
     word_to_id = dict(zip(words, range(len(words))))
     return word_to_id
+sdsad
